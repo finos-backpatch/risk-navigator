@@ -2,7 +2,7 @@
 
 # OSERA Risk Navigator
 
-A FINOS community project.
+[About OSERA](https://osera.finos.org)
 
 > A decision-enablement HTML tool for tech-org leaders, designed to be built
 > against open-source vulnerability data and your organisation's own

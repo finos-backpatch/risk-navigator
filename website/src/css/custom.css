@@ -92,6 +92,12 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, .03);
 }
 
+.rn-tagpill:hover {
+  color: var(--osera-blue);
+  border-color: var(--osera-blue);
+  text-decoration: none;
+}
+
 .rn-tagpill span {
   width: 8px;
   height: 8px;
@@ -208,6 +214,33 @@ body {
   padding: 80px 0;
 }
 
+.rn-tool-section {
+  background: #fff;
+  border-bottom: 1px solid var(--osera-line);
+}
+
+.rn-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  gap: 28px;
+  align-items: end;
+  margin-bottom: 30px;
+}
+
+.rn-section-head h2 {
+  color: var(--osera-navy);
+  font-size: 36px;
+  line-height: 1.16;
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.rn-section-head p {
+  color: var(--osera-grey);
+  line-height: 1.6;
+  margin: 0;
+}
+
 .rn-eyebrow {
   color: var(--osera-blue);
   font-weight: 800;
@@ -223,11 +256,57 @@ body {
   gap: 22px;
 }
 
+.rn-tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.rn-tool-card {
+  background: var(--osera-soft);
+  border: 1px solid var(--osera-line);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(16, 34, 46, .06);
+}
+
+.rn-tool-shot {
+  aspect-ratio: 16 / 10;
+  background: #fff;
+  border-bottom: 1px solid var(--osera-line);
+  overflow: hidden;
+}
+
+.rn-tool-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.rn-tool-copy {
+  padding: 20px;
+}
+
+.rn-tool-copy h3 {
+  color: var(--osera-navy);
+  font-size: 18px;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.rn-tool-copy p {
+  color: var(--osera-grey);
+  line-height: 1.58;
+  margin: 10px 0 0;
+}
+
 .rn-cards article {
   background: #fff;
   border: 1px solid var(--osera-line);
   border-top: 5px solid var(--osera-blue);
-  border-radius: 18px;
+  border-radius: 8px;
   padding: 26px;
   box-shadow: 0 1px 2px rgba(16, 34, 46, .03);
 }
@@ -254,11 +333,39 @@ body {
 
 @media (max-width: 900px) {
   .rn-hero-grid,
-  .rn-cards {
+  .rn-section-head,
+  .rn-cards,
+  .rn-tool-grid {
     grid-template-columns: 1fr;
   }
 
   .rn-hero h1 {
     font-size: 38px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rn-wrap {
+    padding: 0 20px;
+  }
+
+  .rn-hero-grid {
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+
+  .rn-hero h1 {
+    font-size: 34px;
+    max-width: 100%;
+  }
+
+  .rn-sub {
+    font-size: 17px;
+    max-width: 100%;
+  }
+
+  .rn-diagram {
+    padding: 20px;
+    min-width: 0;
   }
 }

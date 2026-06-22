@@ -1,8 +1,45 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 const publicToolUrl = "https://finos-backpatch.github.io/risk-navigator/tool/risk-navigator.html";
+
+const toolSections = [
+  {
+    image: "/img/tool/risk-navigator-prioritization.png",
+    title: "Prioritize vulnerable libraries",
+    copy: "Start from the ranked library view to compare CVSS, EPSS, KEV, affected projects, upgrade effort, safe versions, and amplifier paths in one place.",
+    alt: "Risk Navigator library prioritization table with detail pane",
+  },
+  {
+    image: "/img/tool/risk-navigator-backpatch.png",
+    title: "Find OSERA patch candidates",
+    copy: "Use the backpatch priority calculator to separate routine upgrades from cases where fork, backpatch, or amplifier work can reduce migration risk.",
+    alt: "Risk Navigator backpatch priority calculator view",
+  },
+  {
+    image: "/img/tool/risk-navigator-openrewrite-cart.png",
+    title: "Generate remediation bundles",
+    copy: "Add Maven dependencies to the OpenRewrite cart, tune target versions, and generate YAML or impact prompts for repeatable remediation planning.",
+    alt: "Risk Navigator OpenRewrite cart panel",
+  },
+];
+
+function ToolSectionCard({ image, title, copy, alt }) {
+  const imageSrc = useBaseUrl(image);
+  return (
+    <article className="rn-tool-card">
+      <div className="rn-tool-shot">
+        <img src={imageSrc} alt={alt} loading="lazy" />
+      </div>
+      <div className="rn-tool-copy">
+        <h3>{title}</h3>
+        <p>{copy}</p>
+      </div>
+    </article>
+  );
+}
 
 export default function Home() {
   return (
@@ -14,7 +51,9 @@ export default function Home() {
         <section className="rn-hero">
           <div className="rn-wrap rn-hero-grid">
             <div>
-              <span className="rn-tagpill"><span /> OSERA · FINOS community project</span>
+              <a className="rn-tagpill" href="https://osera.finos.org">
+                <span /> About OSERA
+              </a>
               <h1>Prioritize dependency risk with an open, reproducible snapshot.</h1>
               <p className="rn-sub">
                 Risk Navigator turns vulnerability intelligence and dependency inventory into an
@@ -35,6 +74,26 @@ export default function Home() {
               <div className="rn-arrow">→</div>
               <div className="rn-node rn-output">Prioritized fixes</div>
               <div className="rn-node rn-output">OpenRewrite cart</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="rn-section rn-tool-section">
+          <div className="rn-wrap">
+            <div className="rn-section-head">
+              <div>
+                <div className="rn-eyebrow">Inside the tool</div>
+                <h2>From exposure signal to remediation plan.</h2>
+              </div>
+              <p>
+                The hosted demo uses the OSERA sample dataset, so the same views can be explored
+                directly from GitHub Pages.
+              </p>
+            </div>
+            <div className="rn-tool-grid">
+              {toolSections.map(section => (
+                <ToolSectionCard key={section.title} {...section} />
+              ))}
             </div>
           </div>
         </section>

@@ -81,8 +81,7 @@ const config = {
           title: "FINOS",
           items: [
             { label: "FINOS", href: "https://www.finos.org/" },
-            { label: "Community", href: "https://community.finos.org/" },
-            { label: "OSERA", href: "https://github.com/finos-backpatch/community" },
+            { label: "About OSERA", href: "https://osera.finos.org" },
           ],
         },
       ],

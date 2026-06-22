@@ -67,9 +67,9 @@ body {
   background: radial-gradient(circle at 0 0, #17304a 0, transparent 35%), var(--bg);
 }
 header {
-  background: color-mix(in srgb, var(--panel) 90%, var(--mist) 10%);
-  border-bottom: 1px solid var(--line);
-  box-shadow: 0 1px 2px rgba(22, 34, 46, .03);
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .16);
   padding: 12px 18px;
   position: sticky;
   top: 0;
@@ -97,6 +97,8 @@ header {
   height: 34px;
   object-fit: contain;
   display: block;
+  filter: brightness(0) invert(1);
+  opacity: .94;
 }
 .brand-suite {
   display: flex;
@@ -108,18 +110,43 @@ header {
   font-family: "Inter", system-ui, sans-serif;
   font-weight: 500;
   font-size: 14px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, .82);
   letter-spacing: 0;
 }
 .brand-alliance {
-  color: var(--teal-dark);
+  color: var(--cyan);
   font-weight: 700;
 }
 .brand-app {
   font-family: "Montserrat", system-ui, sans-serif;
   font-weight: 800;
   font-size: 15px;
-  color: var(--navy);
+  color: #fff;
+}
+:root[data-theme="dark"] .brand-alliance {
+  color: var(--cyan);
+}
+:root[data-theme="dark"] .brand-app {
+  color: #fff;
+}
+header a {
+  color: var(--accent);
+}
+header button.ghost {
+  background: rgba(255, 255, 255, .08);
+  border-color: rgba(255, 255, 255, .28);
+  color: #fff;
+}
+header button.ghost:hover {
+  background: rgba(255, 255, 255, .14);
+}
+header .meta {
+  color: rgba(255, 255, 255, .78);
+}
+header .meta-pill {
+  background: rgba(255, 255, 255, .08);
+  border-color: rgba(255, 255, 255, .16);
+  color: rgba(255, 255, 255, .88);
 }
 .meta {
   color: var(--muted);
