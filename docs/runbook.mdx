@@ -1,0 +1,49 @@
+---
+id: runbook
+title: Build and Run
+---
+
+## Prerequisites
+
+- Node.js 20 or later for local development tooling.
+- Python 3.11 or later for the data pipeline and tests.
+
+## First-time setup
+
+```bash
+npm install
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+```
+
+## Build the sample dataset
+
+```bash
+npm run build:all
+```
+
+This rebuilds local vulnerability inputs, fetches KEV and EPSS signals, generates the OSERA demo scope, builds `data/finos-sample-platform.json`, and validates the dataset schema.
+
+## Run tests
+
+```bash
+npm test
+```
+
+## Start the static viewer
+
+```bash
+npm run dev
+```
+
+The Vite server opens `/tool/risk-navigator.html`.
+
+## Build this docs site
+
+```bash
+npm run docs:install
+npm run docs:build
+```
+
+The generated Docusaurus output is written to `website/build/`.

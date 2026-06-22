@@ -1,0 +1,50 @@
+---
+id: spec
+title: Spec Summary
+---
+
+The full specification lives in [`SPEC.md`](https://github.com/finos-backpatch/risk-navigator/blob/main/SPEC.md). This page summarizes the contract for the docs site.
+
+## Goal
+
+Risk Navigator is a static decision tool that lets project owners and technology leaders answer:
+
+- Which CVE exposure matters most?
+- Which libraries have safe patch, minor, or major upgrade paths?
+- Which cases require backpatch or create-patch investigation?
+- Which amplifiers or framework upgrades clear the largest impact radius?
+
+## Dataset contract
+
+The viewer consumes one JSON file per scope:
+
+```text
+data/<scope>.json
+```
+
+The dataset includes:
+
+- `meta`: scope labels, filters, signal freshness, counts, and optional branding.
+- `departments`: grouping metadata for filters.
+- `consumer_projects`: project inventory and rollups.
+- `libraries`: vulnerable dependency records, CVEs, consumers, upgrade paths, and remediation signals.
+- `amplifier_clusters`: parent dependency clusters that can reduce transitive exposure.
+
+## Pipeline contract
+
+The build pipeline has four phases:
+
+1. Ingest vulnerability catalogue data.
+2. Fetch external signals such as CISA KEV and FIRST EPSS.
+3. Extract project/dependency inventory for a scope.
+4. Join and validate the final static JSON dataset.
+
+## UI contract
+
+The current prototype includes:
+
+- Libraries, Top fixes, Backpatch Priority Calculator, Backpatch landscape, Amplifiers, Frameworks, Dead-ends, Projects, CVE list, and Project CVE Remediation Plan modes.
+- CVSS and EPSS sliders.
+- project group, namespace, project reference, action, age, KEV, direct, transitive, and backpatch filters.
+- structured detail panes and version-chain exploration.
+- Maven-focused OpenRewrite cart output.

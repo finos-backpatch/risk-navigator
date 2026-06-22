@@ -19,6 +19,7 @@ This folder now includes a working implementation:
 
 - Pipeline scripts: `scripts/`
 - Static viewer: `tool/risk-navigator.html`
+- Branded Docusaurus docs site: `website/`
 - Sample built dataset (`OSERA Demo Data (Example)`): `data/finos-sample-platform.json`
 - Optional real org built dataset: `data/finos-github-org.json` (generated locally, not checked in)
 - Validation/tests: `scripts/validate_dataset.py`, `tests/`
@@ -63,6 +64,10 @@ npm test
 # start local viewer (Vite serves /tool/risk-navigator.html)
 npm run dev
 
+# build the branded docs site
+npm run docs:install
+npm run docs:build
+
 # offline static serve path (no npm dev server required)
 python3 -m http.server 5173
 # then open http://localhost:5173/tool/risk-navigator.html
@@ -94,7 +99,7 @@ These hooks are optional; the viewer keeps current defaults when omitted.
 
 ### Current UI contract (implemented)
 
-- Branding/header: FINOS logo + `FINOS | OSERA` with `Risk Navigator` app title.
+- Branding/header: FINOS logo image + `· OSERA` with `Risk Navigator` app title.
 - Filter bar:
   - `CVSS Min` slider (`0.0`-`10.0`)
   - `EPSS Min` slider (`0.000`-`1.000`)

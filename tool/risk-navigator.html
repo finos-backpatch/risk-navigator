@@ -4,16 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Risk Navigator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
+  --navy: #00253f;
+  --cyan: #00b5e2;
+  --blue: #0086bf;
+  --teal: #3fb6a8;
+  --teal-dark: #487a7b;
+  --green: #43b02a;
+  --soft: #f4f8fb;
+  --mist: #e9f6fb;
   --bg: #f5f7fb;
   --panel: #ffffff;
-  --ink: #1f2937;
-  --muted: #6b7280;
-  --line: #cfe5f1;
-  --primary: #0086bf;
-  --primary-soft: #e4f6fd;
-  --accent: #00b5e2;
+  --ink: #16222e;
+  --muted: #5b6770;
+  --line: #e7edf2;
+  --primary: var(--blue);
+  --primary-soft: var(--mist);
+  --accent: var(--cyan);
   --chip: #edf2fa;
   --good: #1f8b4c;
   --warn: #b96a00;
@@ -47,17 +58,19 @@
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   background: radial-gradient(circle at 0 0, #eaf2ff 0, transparent 35%), var(--bg);
   color: var(--ink);
+  -webkit-font-smoothing: antialiased;
 }
 :root[data-theme="dark"] body {
   background: radial-gradient(circle at 0 0, #17304a 0, transparent 35%), var(--bg);
 }
 header {
-  background: linear-gradient(90deg, color-mix(in srgb, var(--panel) 84%, var(--accent) 16%) 0%, var(--panel) 52%);
-  border-bottom: 2px solid var(--primary);
-  padding: 16px 18px;
+  background: color-mix(in srgb, var(--panel) 90%, var(--mist) 10%);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(22, 34, 46, .03);
+  padding: 12px 18px;
   position: sticky;
   top: 0;
   z-index: 20;
@@ -75,37 +88,38 @@ header {
 .brand-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
-  height: 40px;
+  gap: 12px;
+  min-height: 42px;
   overflow: visible;
 }
 .brand-logo {
-  width: 56px;
-  height: 56px;
+  width: auto;
+  height: 34px;
   object-fit: contain;
-  margin-top: -8px;
-  margin-bottom: -8px;
+  display: block;
 }
 .brand-suite {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 .brand-org {
-  font-family: "Montserrat", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--primary);
-  letter-spacing: .2px;
-}
-.brand-finos { font-weight: 800; }
-.brand-alliance { font-weight: 500; }
-.brand-app {
-  font-family: "Montserrat", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  font-weight: 700;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 500;
   font-size: 14px;
-  color: color-mix(in srgb, var(--primary) 82%, var(--ink) 18%);
+  color: var(--muted);
+  letter-spacing: 0;
+}
+.brand-alliance {
+  color: var(--teal-dark);
+  font-weight: 700;
+}
+.brand-app {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--navy);
 }
 .meta {
   color: var(--muted);
@@ -697,11 +711,11 @@ button.cve-link:hover { text-decoration-thickness: 2px; }
       <img
         id="brandLogo"
         class="brand-logo"
-        src="https://raw.githubusercontent.com/finos/branding/master/finos-logos/icon/FINOS_Icon_RGB.svg"
+        src="https://www.finos.org/hubfs/FINOS/finos-logo/FINOS_Icon_Wordmark_Name_RGB_horizontal.png"
         alt="FINOS logo"
       >
       <div class="brand-suite">
-        <div id="brandOrg" class="brand-org"><span class="brand-finos">FINOS</span> | <span class="brand-alliance">OSERA</span></div>
+        <div id="brandOrg" class="brand-org"><span aria-hidden="true">·</span> <span class="brand-alliance">OSERA</span></div>
         <div class="brand-app">Risk Navigator</div>
         <div id="brandAttribution" class="meta" style="display:none;"></div>
       </div>
@@ -2503,7 +2517,7 @@ function applyMetaPresentation(meta) {
   if (primary.label) {
     els.brandOrg.textContent = String(primary.label);
   } else {
-    els.brandOrg.innerHTML = `<span class="brand-finos">FINOS</span> | <span class="brand-alliance">OSERA</span>`;
+    els.brandOrg.innerHTML = `<span aria-hidden="true">·</span> <span class="brand-alliance">OSERA</span>`;
   }
 
   if (attribution.text) {

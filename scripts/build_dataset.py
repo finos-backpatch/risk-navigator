@@ -1061,7 +1061,7 @@ def build_dataset(
             "division_short": "OSERA",
             "branding": {
                 "primary": {
-                    "label": "FINOS | OSERA",
+                    "label": "\u00b7 OSERA",
                 },
                 "attribution": {
                     "text": "A FINOS community project.",

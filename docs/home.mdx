@@ -1,0 +1,37 @@
+---
+id: home
+title: OSERA Risk Navigator
+---
+
+OSERA Risk Navigator is a FINOS community project for prioritizing software supply-chain remediation work.
+
+The prototype combines open vulnerability intelligence, dependency inventory, and upgrade-path analysis into a static viewer that can be cloned, rebuilt, and served without a backend.
+
+## What is included
+
+- A static single-file viewer at `tool/risk-navigator.html`.
+- A reproducible sample dataset at `data/finos-sample-platform.json`.
+- Python pipeline scripts under `scripts/`.
+- Validation tests under `tests/`.
+- The authoritative build contract in `SPEC.md`.
+
+## Core workflows
+
+1. Build or load a scope dataset.
+2. Filter by severity, exploitability, project group, namespace, and dependency type.
+3. Review prioritized upgrade, backpatch, amplifier, and framework actions.
+4. Add Maven direct dependencies to the OpenRewrite cart.
+5. Export YAML or generate impact-analysis prompts.
+
+## Local start
+
+```bash
+npm install
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+npm run build:all
+npm run dev
+```
+
+Open the tool at `http://127.0.0.1:5173/tool/risk-navigator.html`.
