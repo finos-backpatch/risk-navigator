@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "node scripts/copy-tool-assets.mjs",
     "start": "docusaurus start --host 127.0.0.1",
     "build": "docusaurus build",
     "serve": "docusaurus serve"

@@ -173,6 +173,10 @@ body {
   color: var(--osera-navy);
 }
 
+[data-theme="dark"] .rn-node {
+  color: var(--osera-navy);
+}
+
 .rn-input {
   background: var(--osera-mist);
   border: 1px solid #cfeaf6;
@@ -181,6 +185,11 @@ body {
 .rn-core {
   background: var(--osera-navy);
   color: #fff;
+}
+
+[data-theme="dark"] .rn-core,
+.rn-core {
+  color: #fff !important;
 }
 
 .rn-output {

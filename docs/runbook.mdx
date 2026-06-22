@@ -47,3 +47,5 @@ npm run docs:build
 ```
 
 The generated Docusaurus output is written to `website/build/`.
+
+During the Docusaurus build, `website/scripts/copy-tool-assets.mjs` copies the static viewer, manifest, and OSERA demo dataset into `website/static/`. GitHub Pages therefore publishes both the documentation and the playable demo under the same site.

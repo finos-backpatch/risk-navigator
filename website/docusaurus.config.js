@@ -2,6 +2,7 @@ const lightCodeTheme = require("prism-react-renderer").themes.github;
 const darkCodeTheme = require("prism-react-renderer").themes.nightOwl;
 
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
+const publicToolUrl = "https://finos-backpatch.github.io/risk-navigator/tool/risk-navigator.html";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -51,6 +52,7 @@ const config = {
       items: [
         { to: "/", label: "Overview", position: "right" },
         { to: "/docs/home", label: "Docs", position: "right" },
+        { href: publicToolUrl, label: "Launch Tool", position: "right" },
         {
           href: "https://github.com/finos-backpatch/risk-navigator",
           label: "GitHub",
@@ -71,6 +73,7 @@ const config = {
           items: [
             { label: "Overview", to: "/" },
             { label: "Docs", to: "/docs/home" },
+            { label: "Launch Tool", href: publicToolUrl },
             { label: "GitHub", href: "https://github.com/finos-backpatch/risk-navigator" },
           ],
         },

@@ -2,6 +2,8 @@ import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 
+const publicToolUrl = "https://finos-backpatch.github.io/risk-navigator/tool/risk-navigator.html";
+
 export default function Home() {
   return (
     <Layout
@@ -20,6 +22,7 @@ export default function Home() {
                 amplifier upgrades, and OpenRewrite-ready upgrade bundles.
               </p>
               <div className="rn-cta">
+                <a className="rn-btn rn-primary" href={publicToolUrl}>Launch the tool</a>
                 <Link className="rn-btn rn-primary" to="/docs/home">Read the docs</Link>
                 <Link className="rn-btn rn-ghost" to="/docs/spec">Review the spec</Link>
               </div>
