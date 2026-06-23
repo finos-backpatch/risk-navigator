@@ -2,6 +2,9 @@ const lightCodeTheme = require("prism-react-renderer").themes.github;
 const darkCodeTheme = require("prism-react-renderer").themes.nightOwl;
 
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
+const siteUrl = isGitHubPages
+  ? "https://finos-backpatch.github.io"
+  : process.env.DEPLOY_PRIME_URL || process.env.URL || "https://risk-navigator.finos.org";
 const publicToolUrl = "https://finos-backpatch.github.io/risk-navigator/tool/risk-navigator.html";
 
 /** @type {import('@docusaurus/types').Config} */
@@ -9,7 +12,7 @@ const config = {
   title: "OSERA Risk Navigator",
   tagline: "Dependency-risk prioritization for open source supply resiliency",
   favicon: "img/favicon.ico",
-  url: isGitHubPages ? "https://finos-backpatch.github.io" : "https://risk-navigator.finos.org",
+  url: siteUrl,
   baseUrl: isGitHubPages ? "/risk-navigator/" : "/",
   organizationName: "finos-backpatch",
   projectName: "risk-navigator",
@@ -44,14 +47,15 @@ const config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: "\u00b7 OSERA Risk Navigator",
+      title: "Risk Navigator",
       logo: {
-        alt: "FINOS",
-        src: "img/finos-logo-white.png",
+        alt: "OSERA",
+        src: "img/osera-horizontal-color.svg",
       },
       items: [
         { to: "/", label: "Overview", position: "right" },
         { to: "/docs/home", label: "Docs", position: "right" },
+        { href: "https://osera.finos.org", label: "OSERA", position: "right" },
         { href: publicToolUrl, label: "Launch Tool", position: "right" },
         {
           href: "https://github.com/finos-backpatch/risk-navigator",
@@ -81,7 +85,7 @@ const config = {
           title: "FINOS",
           items: [
             { label: "FINOS", href: "https://www.finos.org/" },
-            { label: "About OSERA", href: "https://osera.finos.org" },
+            { label: "OSERA", href: "https://osera.finos.org" },
           ],
         },
       ],

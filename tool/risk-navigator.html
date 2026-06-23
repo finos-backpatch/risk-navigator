@@ -88,43 +88,35 @@ header {
 .brand-wrap {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   min-height: 42px;
   overflow: visible;
 }
 .brand-logo {
   width: auto;
-  height: 34px;
+  height: 32px;
   object-fit: contain;
   display: block;
-  filter: brightness(0) invert(1);
-  opacity: .94;
 }
-.brand-suite {
+.osera-logo {
+  height: 32px;
+  max-width: 142px;
+  border-radius: 6px;
+  background: #fff;
+  padding: 4px 8px;
+}
+.brand-logo-link {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.brand-org {
-  font-family: "Inter", system-ui, sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  color: rgba(255, 255, 255, .82);
-  letter-spacing: 0;
-}
-.brand-alliance {
-  color: var(--cyan);
-  font-weight: 700;
+  align-items: center;
+  line-height: 0;
 }
 .brand-app {
   font-family: "Montserrat", system-ui, sans-serif;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 20px;
+  line-height: 1;
   color: #fff;
-}
-:root[data-theme="dark"] .brand-alliance {
-  color: var(--cyan);
+  letter-spacing: 0;
 }
 :root[data-theme="dark"] .brand-app {
   color: #fff;
@@ -147,6 +139,15 @@ header .meta-pill {
   background: rgba(255, 255, 255, .08);
   border-color: rgba(255, 255, 255, .16);
   color: rgba(255, 255, 255, .88);
+}
+.icon-btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
 }
 .meta {
   color: var(--muted);
@@ -735,23 +736,20 @@ button.cve-link:hover { text-decoration-thickness: 2px; }
 <header>
   <div class="h-row">
     <div class="brand-wrap">
-      <img
-        id="brandLogo"
-        class="brand-logo"
-        src="https://www.finos.org/hubfs/FINOS/finos-logo/FINOS_Icon_Wordmark_Name_RGB_horizontal.png"
-        alt="FINOS logo"
-      >
-      <div class="brand-suite">
-        <div id="brandOrg" class="brand-org"><span aria-hidden="true">·</span> <span class="brand-alliance">OSERA</span></div>
-        <div class="brand-app">Risk Navigator</div>
-        <div id="brandAttribution" class="meta" style="display:none;"></div>
-      </div>
+      <a class="brand-logo-link" href="https://osera.finos.org" target="_blank" rel="noreferrer" aria-label="OSERA website">
+        <img
+          class="brand-logo osera-logo"
+          src="assets/osera-horizontal-color.svg"
+          alt="OSERA logo"
+        >
+      </a>
+      <div class="brand-app">Risk Navigator</div>
     </div>
     <div id="scopeMeta" class="meta">No dataset loaded</div>
     <div class="spacer"></div>
     <select id="datasetSelect"></select>
-    <button id="helpBtn" class="ghost">Help</button>
-    <button id="themeBtn" class="ghost">Toggle Theme</button>
+    <button id="helpBtn" class="ghost">About</button>
+    <button id="themeBtn" class="ghost icon-btn" aria-label="Switch to dark theme" title="Switch to dark theme"><span id="themeIcon" aria-hidden="true">☾</span></button>
     <button id="cartBtn" class="primary">Cart (0)</button>
   </div>
 </header>
@@ -886,13 +884,13 @@ button.cve-link:hover { text-decoration-thickness: 2px; }
 <div id="docModal" class="modal">
   <div class="modal-card doc-card">
     <div class="h-row" style="margin-bottom:8px;">
-      <strong id="docModalTitle">Risk Navigator Help</strong>
+      <strong id="docModalTitle">About Risk Navigator</strong>
       <div class="spacer"></div>
       <button id="closeDocModal">Close</button>
     </div>
     <div class="help-tabs modes">
-      <button id="helpTabHowto" type="button" class="mode-btn help-tab active">How to use</button>
-      <button id="helpTabGlossary" type="button" class="mode-btn help-tab">Glossary/About</button>
+      <button id="helpTabHowto" type="button" class="mode-btn help-tab active">About</button>
+      <button id="helpTabGlossary" type="button" class="mode-btn help-tab">Glossary</button>
     </div>
     <div id="docContent" class="doc-content"></div>
   </div>
@@ -1027,8 +1025,40 @@ const STORAGE_KEYS = {
   lastDataset: "risk-nav-last-dataset",
   lastMode: "risk-nav-last-mode"
 };
+const ABOUT_DOC_MARKDOWN = `
+# About Risk Navigator
+
+Risk Navigator helps teams prioritize dependency-risk remediation across projects using CVE, KEV, EPSS, impact radius, and upgrade effort. It turns dependency inventory and vulnerability intelligence into an interactive planning surface for upgrade, backpatch, amplifier, framework, and OpenRewrite remediation work.
+
+Risk Navigator is part of OSERA's open source supply resiliency work.
+
+- Microsite: [Risk Navigator](https://finos-backpatch.github.io/risk-navigator/)
+- OSERA: [osera.finos.org](https://osera.finos.org)
+- FINOS: [finos.org](https://www.finos.org/)
+
+## What the tool helps with
+
+- Prioritize vulnerable libraries by severity, exploit likelihood, project reach, and upgrade effort.
+- Find candidates where OSERA backpatch or downstream patch ownership could reduce migration pressure.
+- Identify amplifier and framework moves that can remediate repeated exposure across many projects.
+- Generate OpenRewrite-ready remediation bundles for Maven direct dependencies.
+
+## How to use
+
+1. Choose a dataset from the selector.
+2. Use filters for CVSS, EPSS, KEV, namespace, project group, and direct/transitive exposure.
+3. Move through Libraries, Top fixes, Backpatch, Amplifiers, Frameworks, Dead-ends, Projects, and CVE list views.
+4. Open row details to inspect safe versions, consumer impact, CVEs, and OpenRewrite cart actions.
+
+## Data and refresh
+
+- The bundled **OSERA Demo Data (Example)** is a demo dataset.
+- Additional generated datasets can be added to tool/manifest.json.
+- Rebuild datasets with the local scripts in scripts/.
+`;
+
 const HELP_DOC_MARKDOWN = `
-# Risk Navigator Help
+# How To Use Risk Navigator
 
 Risk Navigator helps teams prioritize dependency-risk remediation across projects using CVE, KEV, EPSS, impact radius, and upgrade effort.
 
@@ -1039,18 +1069,7 @@ Risk Navigator helps teams prioritize dependency-risk remediation across project
 - Additional locally generated datasets can be added to tool/manifest.json.
 - Last selected dataset and last active mode/tab are remembered across reloads (local browser storage).
 
-## 2. Use Filters
-
-- CVSS Min: severity threshold.
-- EPSS Min: exploit probability threshold (0.000 to 1.000).
-- Project Group / Namespace / Project Reference: scope by ownership and repository.
-- KEV only: keep only known-exploited vulnerabilities.
-- Direct only: hide libraries that are only transitively consumed.
-- Transitive only: focus transitive-only exposure.
-- Backpatch candidates only: show likely/probable/create-patch candidates.
-- Version age bucket / min affected projects / recommended action: priority planning filters.
-
-## 3. Read The Ten Modes
+## 2. Read The Ten Modes
 
 1. **Libraries**: vulnerable library inventory and upgrade path.
 2. **Top fixes**: ranked action list (UPGRADE_*, BACKPATCH_PROBABLE/BACKPATCH_LIKELY, CREATE_PATCH, AMPLIFIER, FRAMEWORK).
@@ -1063,7 +1082,7 @@ Risk Navigator helps teams prioritize dependency-risk remediation across project
 9. **CVE list**: portfolio-wide CVE rollup with direct/transitive/library/project hit counts.
 10. **Project CVE Remediation Plan**: project-level queue, action counts, and strategy labels.
 
-## 4. OpenRewrite Cart
+## 3. OpenRewrite Cart
 
 - The cart currently targets **Maven direct dependencies**.
 - Add items from library details with **Add Maven lib to cart**.
@@ -1071,7 +1090,7 @@ Risk Navigator helps teams prioritize dependency-risk remediation across project
 - Use **Impact prompt** to generate an analysis prompt for model-assisted migration planning.
 - More OpenRewrite docs: [docs.openrewrite.org](https://docs.openrewrite.org)
 
-## 5. Simulate backport patch (Libraries detail)
+## 4. Simulate backport patch (Libraries detail)
 
 - The simulation assumes a safe backport/fork patch can be produced on the current release line.
 - It estimates:
@@ -1081,7 +1100,7 @@ Risk Navigator helps teams prioritize dependency-risk remediation across project
 - In dead-end details, the tool also checks the latest release in the current minor line to identify "patch/dead-end" scenarios.
 - This is a planning signal, not proof of patch feasibility. Engineering validation is still required.
 
-## 6. Interpreting Recommendations
+## 5. Interpreting Recommendations
 
 - UPGRADE_PATCH: safest upgrade motion.
 - UPGRADE_MINOR: moderate compatibility risk.
@@ -1091,7 +1110,7 @@ Risk Navigator helps teams prioritize dependency-risk remediation across project
 - CREATE_PATCH: latest observed release is still vulnerable; create/maintain downstream patch.
 - AMPLIFIER and FRAMEWORK: coordinated actions that reduce repeated work.
 
-## 7. Data Refresh
+## 6. Data Refresh
 
 - Rebuild datasets via local scripts in scripts/.
 - Release-date enrichment comes from deps.dev package version history.
@@ -1099,7 +1118,7 @@ Risk Navigator helps teams prioritize dependency-risk remediation across project
 - Full OSV source is cached locally and reused when unchanged.
 - Local large/full artifacts are intentionally gitignored.
 
-## 8. Drilldowns and Navigation
+## 7. Drilldowns and Navigation
 
 - In **Frameworks** view, click a member library (group/artifact) to open the library details modal.
 - In **Top fixes** when action is **FRAMEWORK**, member libraries are also clickable and open the same library details modal.
@@ -1108,7 +1127,7 @@ Risk Navigator helps teams prioritize dependency-risk remediation across project
 - The CVE details modal includes the direct **Open in NVD** link.
 `;
 const HELP_GLOSSARY_MARKDOWN = `
-# Glossary and About
+# Glossary
 
 ## Core terms
 
@@ -1251,9 +1270,8 @@ const $ = sel => document.querySelector(sel);
 const els = {
   datasetSelect: $("#datasetSelect"),
   scopeMeta: $("#scopeMeta"),
-  brandLogo: $("#brandLogo"),
-  brandOrg: $("#brandOrg"),
-  brandAttribution: $("#brandAttribution"),
+  themeBtn: $("#themeBtn"),
+  themeIcon: $("#themeIcon"),
   labelProjectGroup: $("#labelProjectGroup"),
   labelProjectReference: $("#labelProjectReference"),
   modeBar: $("#modeBar"),
@@ -2102,10 +2120,10 @@ function markdownToHtml(md) {
 function renderHelpTabContent() {
   const tab = state.helpTab === "glossary" ? "glossary" : "howto";
   const titleEl = $("#docModalTitle");
-  if (titleEl) titleEl.textContent = tab === "glossary" ? "Risk Navigator Glossary and About" : "How To Use Risk Navigator";
+  if (titleEl) titleEl.textContent = tab === "glossary" ? "Risk Navigator Glossary" : "About Risk Navigator";
   const markdown = tab === "glossary"
     ? HELP_GLOSSARY_MARKDOWN
-    : `${HELP_DOC_MARKDOWN}\n\n${buildHeuristicsHelpMarkdown()}`;
+    : `${ABOUT_DOC_MARKDOWN}\n\n${HELP_DOC_MARKDOWN}\n\n${buildHeuristicsHelpMarkdown()}`;
   els.docContent.innerHTML = markdownToHtml(markdown);
   els.helpTabHowto.classList.toggle("active", tab === "howto");
   els.helpTabGlossary.classList.toggle("active", tab === "glossary");
@@ -2423,6 +2441,17 @@ function loadTheme() {
   const stored = localStorage.getItem("risk-nav-theme");
   const theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   document.documentElement.setAttribute("data-theme", theme);
+  updateThemeButton(theme);
+}
+
+function updateThemeButton(theme = document.documentElement.getAttribute("data-theme")) {
+  const current = theme === "dark" ? "dark" : "light";
+  if (els.themeIcon) els.themeIcon.textContent = current === "dark" ? "☀" : "☾";
+  if (els.themeBtn) {
+    const label = current === "dark" ? "Switch to light theme" : "Switch to dark theme";
+    els.themeBtn.setAttribute("aria-label", label);
+    els.themeBtn.setAttribute("title", label);
+  }
 }
 
 function toggleTheme() {
@@ -2430,6 +2459,7 @@ function toggleTheme() {
   const next = current === "dark" ? "light" : "dark";
   document.documentElement.setAttribute("data-theme", next);
   localStorage.setItem("risk-nav-theme", next);
+  updateThemeButton(next);
 }
 
 function buildNamespaceRegistryFromMeta(meta) {
@@ -2532,32 +2562,6 @@ function applyMetaPresentation(meta) {
       <span class="meta-pill">Grouping: ${grouping}</span>
     </div>
   `;
-
-  const branding = m.branding && typeof m.branding === "object" ? m.branding : {};
-  const primary = branding.primary && typeof branding.primary === "object" ? branding.primary : {};
-  const attribution = branding.attribution && typeof branding.attribution === "object" ? branding.attribution : {};
-
-  if (primary.logo_url) {
-    els.brandLogo.src = String(primary.logo_url);
-    els.brandLogo.alt = `${String(primary.label || "Organization")} logo`;
-  }
-  if (primary.label) {
-    els.brandOrg.textContent = String(primary.label);
-  } else {
-    els.brandOrg.innerHTML = `<span aria-hidden="true">·</span> <span class="brand-alliance">OSERA</span>`;
-  }
-
-  if (attribution.text) {
-    const text = escapeHtml(String(attribution.text));
-    const url = String(attribution.url || "").trim();
-    els.brandAttribution.style.display = "";
-    els.brandAttribution.innerHTML = url
-      ? `<a href="${url}" target="_blank" rel="noreferrer">${text}</a>`
-      : text;
-  } else {
-    els.brandAttribution.style.display = "none";
-    els.brandAttribution.innerHTML = "";
-  }
 
   const labels = m.filter_labels && typeof m.filter_labels === "object" ? m.filter_labels : {};
   if (els.labelProjectGroup) els.labelProjectGroup.textContent = String(labels.project_group || "Project Group");
@@ -5412,7 +5416,7 @@ async function loadDatasetSelection(url) {
 }
 
 function bindEvents() {
-  $("#helpBtn").onclick = () => openDocModal(state.helpTab || "howto");
+  $("#helpBtn").onclick = () => openDocModal("howto");
   if (els.helpTabHowto) {
     els.helpTabHowto.addEventListener("click", e => {
       e.preventDefault();
@@ -5439,7 +5443,7 @@ function bindEvents() {
       renderHelpTabContent();
     });
   }
-  $("#themeBtn").onclick = toggleTheme;
+  els.themeBtn.onclick = toggleTheme;
   if (els.filterCollapseBtn) {
     els.filterCollapseBtn.onclick = () => setFilterPanelCollapsed(!state.filterPanelCollapsed);
   }
