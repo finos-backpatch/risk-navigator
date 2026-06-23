@@ -1,2 +1,10 @@
 [build]
-   ignore = "/bin/false"
+  base = "website"
+  command = "npm run build"
+  publish = "build"
+
+[context.production]
+  ignore = "node -e 'process.exit(0)'"
+
+[context.branch-deploy]
+  ignore = "node -e 'process.exit(0)'"

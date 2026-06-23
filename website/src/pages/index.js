@@ -51,9 +51,6 @@ export default function Home() {
         <section className="rn-hero">
           <div className="rn-wrap rn-hero-grid">
             <div>
-              <a className="rn-tagpill" href="https://osera.finos.org">
-                <span /> About OSERA
-              </a>
               <h1>Prioritize dependency risk with an open, reproducible snapshot.</h1>
               <p className="rn-sub">
                 Risk Navigator turns vulnerability intelligence and dependency inventory into an

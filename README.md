@@ -103,8 +103,6 @@ https://finos-backpatch.github.io/risk-navigator/tool/risk-navigator.html
 
 Built datasets can optionally provide UI override metadata in `meta`:
 
-- `branding.primary.logo_url`, `branding.primary.label`
-- `branding.attribution.text`, `branding.attribution.url`
 - `scope_label`, `division`, `division_short`, `scope_type`
 - `filter_labels.project_group`, `filter_labels.project_reference`
 - `frameworks_overlay` (array) or `frameworks_overlay_url` (JSON URL)
@@ -114,7 +112,7 @@ These hooks are optional; the viewer keeps current defaults when omitted.
 
 ### Current UI contract (implemented)
 
-- Branding/header: FINOS logo image + `· OSERA` with `Risk Navigator` app title.
+- Branding/header: linked colorful OSERA logo with a styled `Risk Navigator` app title, an About modal with Risk Navigator, OSERA, and FINOS links, and an icon-only theme toggle.
 - Filter bar:
   - `CVSS Min` slider (`0.0`-`10.0`)
   - `EPSS Min` slider (`0.000`-`1.000`)

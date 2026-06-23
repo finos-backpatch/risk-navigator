@@ -9,6 +9,8 @@ const staticDir = resolve(rootDir, "website/static");
 const copies = [
   ["tool/risk-navigator.html", "tool/risk-navigator.html"],
   ["tool/manifest.json", "tool/manifest.json"],
+  ["tool/assets/osera-horizontal-color.svg", "tool/assets/osera-horizontal-color.svg"],
+  ["tool/assets/osera-horizontal-white.svg", "tool/assets/osera-horizontal-white.svg"],
   ["data/finos-sample-platform.json", "data/finos-sample-platform.json"],
 ];
 
