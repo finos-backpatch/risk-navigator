@@ -1,0 +1,47 @@
+{
+  "scope_type": "repository-deep-sbom-sample",
+  "scope_name": "finos-deep-sbom-demo",
+  "scope_label": "FINOS Deep SBOM Demo",
+  "division": "FINOS public repositories",
+  "division_short": "FINOS",
+  "branding": {
+    "primary": {
+      "label": "· OSERA"
+    },
+    "attribution": {
+      "text": "A FINOS community project.",
+      "url": "https://github.com/finos-backpatch/community"
+    }
+  },
+  "project_group_mode": "metadata",
+  "filter_labels": {
+    "project_group": "Input source",
+    "project_reference": "Repository"
+  },
+  "dataset_methodology": {
+    "summary": "Curated mixed-ecosystem FINOS public repository sample built from deterministic CycloneDX SBOM inputs with explicit direct/transitive dependency graph relationships.",
+    "generator_script": "scripts/generate_deep_sbom_demo.py",
+    "optional_scanner_script": "scripts/scan_repos_to_sbom.py",
+    "sbom_dir": "data/sboms/finos-deep-sbom-demo",
+    "scanner_options": [
+      "cdxgen",
+      "syft"
+    ],
+    "repos": [
+      "architecture-as-code",
+      "waltz",
+      "traderX",
+      "open-resource-broker",
+      "ipyregulartable",
+      "TimeBase-CE",
+      "FDC3",
+      "symphony-bdk-java"
+    ],
+    "limitations": [
+      "This is a curated demo, not a complete FINOS organization scan.",
+      "The committed SBOM inputs model representative dependency graphs for selected FINOS repositories; they should not be interpreted as authoritative current SBOMs for those repositories.",
+      "Live scanner fidelity depends on support for each repository's package managers, lockfiles, and build metadata.",
+      "Container image/base-image findings are represented through OCI parent components and RPM child packages; image registry resolution is not performed for every build target."
+    ]
+  }
+}

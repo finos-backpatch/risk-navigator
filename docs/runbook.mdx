@@ -63,6 +63,24 @@ python3 scripts/scan_repos_to_sbom.py --scope finos-sbom-demo --org finos --defa
 
 Scanner output is close-to-realistic, not complete. Coverage depends on supported ecosystems, lockfiles, public repository contents, private registry access, and whether build-time dependency resolution is required.
 
+Run live scanner commands in a sandboxed environment and review generated SBOMs before publishing them. Some scanners may invoke package-manager or build-wrapper commands while resolving dependency graphs.
+
+## Build the deep SBOM demo dataset
+
+```bash
+npm run build:all:finos-deep-sbom-demo
+```
+
+This generates deterministic CycloneDX inputs for eight selected FINOS repository names, imports them through the CycloneDX path, builds `data/finos-deep-sbom-demo.json`, and validates the dataset schema.
+
+The deep demo is curated to show a more complete opportunity landscape than the broad manifest-only FINOS snapshot: Maven/Gradle-style Java, npm/package-lock-style frontend, PyPI, OCI base-image, and RPM child-package relationships with direct/transitive graph edges.
+
+To regenerate only the committed SBOM inputs:
+
+```bash
+npm run generate:finos-deep-sbom-demo
+```
+
 ## Build the FINOS GitHub org snapshot
 
 ```bash

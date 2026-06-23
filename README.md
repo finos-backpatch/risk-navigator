@@ -22,6 +22,7 @@ This folder now includes a working implementation:
 - Branded Docusaurus docs site: `website/`
 - Sample built dataset (`OSERA Demo Data (Example)`): `data/finos-sample-platform.json`
 - SBOM-derived demo dataset (`FINOS SBOM Scan Demo`): `data/finos-sbom-demo.json`
+- Curated deep graph demo dataset (`FINOS Deep SBOM Demo`): `data/finos-deep-sbom-demo.json`
 - Full public FINOS org snapshot (`FINOS GitHub Org Snapshot`): `data/finos-github-org.json`
   - 132 active non-fork public FINOS repositories
   - 97 repositories with extracted dependency edges
@@ -67,6 +68,9 @@ npm run build:all
 
 # second demo dataset from committed CycloneDX SBOM inputs
 npm run build:all:finos-sbom-demo
+
+# deeper multi-ecosystem SBOM demo with direct/transitive graph examples
+npm run build:all:finos-deep-sbom-demo
 
 # optional: regenerate CycloneDX SBOM inputs from public FINOS repos
 # requires cdxgen on PATH; cloned repos are written under data/local/
@@ -337,6 +341,7 @@ server, no build step, no framework. ~70 KB self-contained.
 Data policy:
 - Keep sample artifacts (`OSERA Demo Data (Example)`, file slug `finos-sample-platform`) in-repo for distribution.
 - Keep the small SBOM-derived demo (`FINOS SBOM Scan Demo`, file slug `finos-sbom-demo`) in-repo so the dataset dropdown can demonstrate scanner-based inventory without live cloning.
+- Keep the curated deep SBOM demo (`FINOS Deep SBOM Demo`, file slug `finos-deep-sbom-demo`) in-repo so the dataset dropdown can demonstrate richer direct/transitive graphs across Maven, npm, PyPI, OCI, and RPM examples without executing public repo build tools.
 - Keep the public FINOS org snapshot (`FINOS GitHub Org Snapshot`, file slug `finos-github-org`) in-repo as the larger realism dataset. Refresh it with the full-OSV path and authenticated GitHub API access.
 - Keep full OSV dump + live rebuilt org datasets local (gitignored) and regenerate as needed.
 - Keep deps.dev version-date cache local (gitignored); refresh a package only when a newer observed version appears in the raw scope.
@@ -361,6 +366,23 @@ npm run build:all:finos-sbom-demo
 ```
 
 The scanner wrapper clones public repositories into `data/local/repo-scan/<scope>/`, emits SBOMs to `data/sboms/<scope>/`, and supports `--scanner cdxgen` or `--scanner syft`.
+
+### Deep SBOM demo dataset
+
+The deeper demo dataset is built from deterministic CycloneDX files under `data/sboms/finos-deep-sbom-demo/`.
+It uses eight selected FINOS repository names and models direct/transitive graphs across Maven/Gradle-style Java, npm, PyPI, OCI base-image, and RPM child-package examples.
+
+```bash
+npm run build:all:finos-deep-sbom-demo
+```
+
+To regenerate only the committed CycloneDX inputs:
+
+```bash
+npm run generate:finos-deep-sbom-demo
+```
+
+Use `npm run scan:finos-deep-sbom-demo` only for sandboxed live scanner experiments, and review scanner output before publishing it.
 Scanner output is close-to-realistic, not complete: coverage depends on public repo contents, lockfiles, supported ecosystems, and whether private registry or build-time resolution is required.
 
 ---

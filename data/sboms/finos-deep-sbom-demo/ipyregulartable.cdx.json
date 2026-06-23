@@ -1,0 +1,104 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-06-23T00:00:00Z",
+    "tools": [
+      {
+        "vendor": "Risk Navigator",
+        "name": "curated-deep-sbom-demo",
+        "version": "0.1.0"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "bom-ref": "pkg:github/finos/ipyregulartable@main",
+      "name": "ipyregulartable",
+      "version": "main",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/finos/ipyregulartable.git"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "pkg:pypi/jupyterlab@4.0.0",
+      "name": "jupyterlab",
+      "version": "4.0.0",
+      "purl": "pkg:pypi/jupyterlab@4.0.0",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:pypi/requests@2.27.1",
+      "name": "requests",
+      "version": "2.27.1",
+      "purl": "pkg:pypi/requests@2.27.1",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:pypi/numpy@1.20.0",
+      "name": "numpy",
+      "version": "1.20.0",
+      "purl": "pkg:pypi/numpy@1.20.0",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40jupyterlab/application@4.0.0",
+      "name": "application",
+      "version": "4.0.0",
+      "purl": "pkg:npm/%40jupyterlab/application@4.0.0",
+      "scope": "required",
+      "group": "@jupyterlab"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/bootstrap@3.4.1",
+      "name": "bootstrap",
+      "version": "3.4.1",
+      "purl": "pkg:npm/bootstrap@3.4.1",
+      "scope": "required"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pkg:github/finos/ipyregulartable@main",
+      "dependsOn": [
+        "pkg:pypi/jupyterlab@4.0.0",
+        "pkg:npm/%40jupyterlab/application@4.0.0"
+      ]
+    },
+    {
+      "ref": "pkg:pypi/jupyterlab@4.0.0",
+      "dependsOn": [
+        "pkg:pypi/requests@2.27.1",
+        "pkg:pypi/numpy@1.20.0"
+      ]
+    },
+    {
+      "ref": "pkg:pypi/requests@2.27.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/numpy@1.20.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:npm/%40jupyterlab/application@4.0.0",
+      "dependsOn": [
+        "pkg:npm/bootstrap@3.4.1"
+      ]
+    },
+    {
+      "ref": "pkg:npm/bootstrap@3.4.1",
+      "dependsOn": []
+    }
+  ]
+}

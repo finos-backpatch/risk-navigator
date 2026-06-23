@@ -17,6 +17,7 @@ const copies = [
   ["tool/assets/osera-horizontal-white.svg", "tools/assets/osera-horizontal-white.svg"],
   ["data/finos-sample-platform.json", "data/finos-sample-platform.json"],
   ["data/finos-sbom-demo.json", "data/finos-sbom-demo.json"],
+  ["data/finos-deep-sbom-demo.json", "data/finos-deep-sbom-demo.json"],
   ["data/finos-github-org.json", "data/finos-github-org.json"],
 ];
 

@@ -1,0 +1,118 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-06-23T00:00:00Z",
+    "tools": [
+      {
+        "vendor": "Risk Navigator",
+        "name": "curated-deep-sbom-demo",
+        "version": "0.1.0"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "bom-ref": "pkg:github/finos/open-resource-broker@main",
+      "name": "open-resource-broker",
+      "version": "main",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/finos/open-resource-broker.git"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "pkg:pypi/fastapi@0.95.0",
+      "name": "fastapi",
+      "version": "0.95.0",
+      "purl": "pkg:pypi/fastapi@0.95.0",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:pypi/requests@2.25.0",
+      "name": "requests",
+      "version": "2.25.0",
+      "purl": "pkg:pypi/requests@2.25.0",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:pypi/urllib3@2.6.3",
+      "name": "urllib3",
+      "version": "2.6.3",
+      "purl": "pkg:pypi/urllib3@2.6.3",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:pypi/cryptography@46.0.5",
+      "name": "cryptography",
+      "version": "46.0.5",
+      "purl": "pkg:pypi/cryptography@46.0.5",
+      "scope": "required"
+    },
+    {
+      "type": "container",
+      "bom-ref": "pkg:oci/docker.io/library/python@3.11-slim",
+      "name": "python",
+      "version": "3.11-slim",
+      "purl": "pkg:oci/docker.io/library/python@3.11-slim",
+      "scope": "required",
+      "group": "docker.io/library"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:rpm/rhel/xz@5.4.3-1",
+      "name": "xz",
+      "version": "5.4.3-1",
+      "purl": "pkg:rpm/rhel/xz@5.4.3-1",
+      "scope": "required",
+      "group": "rhel"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pkg:github/finos/open-resource-broker@main",
+      "dependsOn": [
+        "pkg:pypi/fastapi@0.95.0",
+        "pkg:pypi/cryptography@46.0.5",
+        "pkg:oci/docker.io/library/python@3.11-slim"
+      ]
+    },
+    {
+      "ref": "pkg:pypi/fastapi@0.95.0",
+      "dependsOn": [
+        "pkg:pypi/requests@2.25.0",
+        "pkg:pypi/urllib3@2.6.3"
+      ]
+    },
+    {
+      "ref": "pkg:pypi/requests@2.25.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/urllib3@2.6.3",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/cryptography@46.0.5",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:oci/docker.io/library/python@3.11-slim",
+      "dependsOn": [
+        "pkg:rpm/rhel/xz@5.4.3-1"
+      ]
+    },
+    {
+      "ref": "pkg:rpm/rhel/xz@5.4.3-1",
+      "dependsOn": []
+    }
+  ]
+}

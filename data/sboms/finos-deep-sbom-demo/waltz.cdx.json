@@ -1,0 +1,135 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-06-23T00:00:00Z",
+    "tools": [
+      {
+        "vendor": "Risk Navigator",
+        "name": "curated-deep-sbom-demo",
+        "version": "0.1.0"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "bom-ref": "pkg:github/finos/waltz@main",
+      "name": "waltz",
+      "version": "main",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/finos/waltz.git"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-web@2.7.18",
+      "name": "spring-boot-starter-web",
+      "version": "2.7.18",
+      "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-web@2.7.18",
+      "scope": "required",
+      "group": "org.springframework.boot"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:maven/org.springframework/spring-web@5.3.39",
+      "name": "spring-web",
+      "version": "5.3.39",
+      "purl": "pkg:maven/org.springframework/spring-web@5.3.39",
+      "scope": "required",
+      "group": "org.springframework"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:maven/org.springframework/spring-context@5.3.39",
+      "name": "spring-context",
+      "version": "5.3.39",
+      "purl": "pkg:maven/org.springframework/spring-context@5.3.39",
+      "scope": "required",
+      "group": "org.springframework"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:maven/org.yaml/snakeyaml@1.33",
+      "name": "snakeyaml",
+      "version": "1.33",
+      "purl": "pkg:maven/org.yaml/snakeyaml@1.33",
+      "scope": "required",
+      "group": "org.yaml"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/bootstrap@3.4.1",
+      "name": "bootstrap",
+      "version": "3.4.1",
+      "purl": "pkg:npm/bootstrap@3.4.1",
+      "scope": "required"
+    },
+    {
+      "type": "container",
+      "bom-ref": "pkg:oci/docker.io/library/tomcat@9-jre17",
+      "name": "tomcat",
+      "version": "9-jre17",
+      "purl": "pkg:oci/docker.io/library/tomcat@9-jre17",
+      "scope": "required",
+      "group": "docker.io/library"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:rpm/rhel/xz@5.4.3-1",
+      "name": "xz",
+      "version": "5.4.3-1",
+      "purl": "pkg:rpm/rhel/xz@5.4.3-1",
+      "scope": "required",
+      "group": "rhel"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pkg:github/finos/waltz@main",
+      "dependsOn": [
+        "pkg:maven/org.springframework.boot/spring-boot-starter-web@2.7.18",
+        "pkg:npm/bootstrap@3.4.1",
+        "pkg:oci/docker.io/library/tomcat@9-jre17"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-web@2.7.18",
+      "dependsOn": [
+        "pkg:maven/org.springframework/spring-web@5.3.39",
+        "pkg:maven/org.springframework/spring-context@5.3.39",
+        "pkg:maven/org.yaml/snakeyaml@1.33"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.springframework/spring-web@5.3.39",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.springframework/spring-context@5.3.39",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.yaml/snakeyaml@1.33",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:npm/bootstrap@3.4.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:oci/docker.io/library/tomcat@9-jre17",
+      "dependsOn": [
+        "pkg:rpm/rhel/xz@5.4.3-1"
+      ]
+    },
+    {
+      "ref": "pkg:rpm/rhel/xz@5.4.3-1",
+      "dependsOn": []
+    }
+  ]
+}

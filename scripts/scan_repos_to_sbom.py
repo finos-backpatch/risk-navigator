@@ -9,6 +9,7 @@ or committed as reproducible demo input.
 from __future__ import annotations
 
 import argparse
+import os
 import json
 import shutil
 import subprocess
@@ -26,15 +27,45 @@ DEFAULT_REPOS = [
     "open-regtech",
     "fdb-record-layer",
 ]
+DEEP_DEMO_REPOS = [
+    "architecture-as-code",
+    "waltz",
+    "traderX",
+    "open-resource-broker",
+    "ipyregulartable",
+    "TimeBase-CE",
+    "FDC3",
+    "symphony-bdk-java",
+]
 
 
-def run(cmd: Sequence[str], cwd: Optional[Path] = None) -> None:
-    subprocess.run(list(cmd), cwd=str(cwd) if cwd else None, check=True)
+SECRET_NAME_PARTS = ("TOKEN", "PASSWORD", "SECRET", "KEY", "CREDENTIAL")
+
+
+def scanner_env() -> Dict[str, str]:
+    env = {}
+    for key, value in os.environ.items():
+        upper = key.upper()
+        if any(part in upper for part in SECRET_NAME_PARTS):
+            continue
+        env[key] = value
+    return env
+
+
+def run(cmd: Sequence[str], cwd: Optional[Path] = None, scrub_env: bool = False) -> None:
+    subprocess.run(
+        list(cmd),
+        cwd=str(cwd) if cwd else None,
+        check=True,
+        env=scanner_env() if scrub_env else None,
+    )
 
 
 def selected_repo_names(args: argparse.Namespace) -> List[str]:
     if args.repos:
         return [repo.strip() for repo in args.repos.split(",") if repo.strip()]
+    if args.deep_demo_repos:
+        return list(DEEP_DEMO_REPOS)
     if args.default_demo_repos:
         return list(DEFAULT_REPOS)
 
@@ -52,6 +83,8 @@ def selected_repo_names(args: argparse.Namespace) -> List[str]:
 
 def ensure_scanner(scanner: str) -> str:
     binary = shutil.which(scanner)
+    if not binary and scanner == "cdxgen" and shutil.which("npx"):
+        return "npx"
     if not binary:
         raise SystemExit(
             f"{scanner!r} was not found on PATH. Install cdxgen or syft, "
@@ -71,12 +104,19 @@ def clone_or_update(repo_url: str, dest: Path, force: bool) -> None:
     run(["git", "clone", "--depth", "1", repo_url, str(dest)])
 
 
-def generate_sbom(scanner: str, source_dir: Path, output_file: Path) -> None:
+def generate_sbom(scanner: str, source_dir: Path, output_file: Path, allow_install_deps: bool) -> None:
     output_file.parent.mkdir(parents=True, exist_ok=True)
     if scanner == "cdxgen":
-        run(["cdxgen", str(source_dir), "-o", str(output_file)])
+        scan_args = [str(source_dir), "-o", str(output_file)]
+        if not allow_install_deps:
+            scan_args.extend(["--no-install-deps", "--technique", "manifest-analysis"])
+        binary = shutil.which("cdxgen")
+        if binary:
+            run([binary, *scan_args], scrub_env=True)
+        else:
+            run(["npx", "--yes", "@cyclonedx/cdxgen", *scan_args], scrub_env=True)
     elif scanner == "syft":
-        run(["syft", f"dir:{source_dir}", "-o", f"cyclonedx-json={output_file}"])
+        run(["syft", f"dir:{source_dir}", "-o", f"cyclonedx-json={output_file}"], scrub_env=True)
     else:
         raise SystemExit(f"Unsupported scanner: {scanner}")
 
@@ -87,8 +127,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--org", default="finos")
     parser.add_argument("--repos", default="", help="Comma-separated repo names. Overrides GitHub selection.")
     parser.add_argument("--default-demo-repos", action="store_true", help="Use a small built-in FINOS repo list.")
+    parser.add_argument("--deep-demo-repos", action="store_true", help="Use a curated mixed-ecosystem FINOS repo list for deep SBOM demos.")
     parser.add_argument("--max-repos", type=int, default=20, help="0 means all repos when --repos is omitted.")
     parser.add_argument("--scanner", choices=["cdxgen", "syft"], default="cdxgen")
+    parser.add_argument("--allow-install-deps", action="store_true", help="Allow scanners to install/resolve dependencies with package-manager commands.")
     parser.add_argument("--out-dir", type=Path, help="Defaults to data/sboms/<scope>.")
     parser.add_argument("--work-dir", type=Path, help="Defaults to data/local/repo-scan/<scope>.")
     parser.add_argument("--force", action="store_true", help="Delete existing cloned repos before cloning.")
@@ -123,7 +165,7 @@ def main() -> int:
         sbom_file = out_dir / f"{repo}.cdx.json"
         try:
             clone_or_update(repo_url, repo_dir, force=bool(args.force))
-            generate_sbom(args.scanner, repo_dir, sbom_file)
+            generate_sbom(args.scanner, repo_dir, sbom_file, allow_install_deps=bool(args.allow_install_deps))
             summary["sboms"].append(str(sbom_file))
         except Exception as exc:
             summary["failures"].append({"repo": repo, "error": str(exc)})

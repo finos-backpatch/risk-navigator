@@ -25,6 +25,13 @@ def test_finos_github_org_dataset_schema_validates():
     assert errors == []
 
 
+def test_finos_deep_sbom_demo_dataset_schema_validates():
+    dataset_path = Path(__file__).resolve().parents[1] / "data" / "finos-deep-sbom-demo.json"
+    assert dataset_path.exists(), "Run `npm run build:all:finos-deep-sbom-demo` before tests"
+    errors = validate(dataset_path)
+    assert errors == []
+
+
 def test_version_chains_do_not_duplicate_canonical_releases():
     import json
 

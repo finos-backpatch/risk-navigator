@@ -1,0 +1,107 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-06-23T00:00:00Z",
+    "tools": [
+      {
+        "vendor": "Risk Navigator",
+        "name": "curated-deep-sbom-demo",
+        "version": "0.1.0"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "bom-ref": "pkg:github/finos/TimeBase-CE@main",
+      "name": "TimeBase-CE",
+      "version": "main",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/finos/TimeBase-CE.git"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "pkg:maven/io.netty/netty-codec-http2@4.1.99.Final",
+      "name": "netty-codec-http2",
+      "version": "4.1.99.Final",
+      "purl": "pkg:maven/io.netty/netty-codec-http2@4.1.99.Final",
+      "scope": "required",
+      "group": "io.netty"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.14.2",
+      "name": "jackson-databind",
+      "version": "2.14.2",
+      "purl": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.14.2",
+      "scope": "required",
+      "group": "com.fasterxml.jackson.core"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:maven/org.apache.activemq/activemq-client@5.17.2",
+      "name": "activemq-client",
+      "version": "5.17.2",
+      "purl": "pkg:maven/org.apache.activemq/activemq-client@5.17.2",
+      "scope": "required",
+      "group": "org.apache.activemq"
+    },
+    {
+      "type": "container",
+      "bom-ref": "pkg:oci/docker.io/library/eclipse-temurin@21-jre",
+      "name": "eclipse-temurin",
+      "version": "21-jre",
+      "purl": "pkg:oci/docker.io/library/eclipse-temurin@21-jre",
+      "scope": "required",
+      "group": "docker.io/library"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:rpm/rhel/xz@5.4.3-1",
+      "name": "xz",
+      "version": "5.4.3-1",
+      "purl": "pkg:rpm/rhel/xz@5.4.3-1",
+      "scope": "required",
+      "group": "rhel"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pkg:github/finos/TimeBase-CE@main",
+      "dependsOn": [
+        "pkg:maven/io.netty/netty-codec-http2@4.1.99.Final",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.14.2",
+        "pkg:maven/org.apache.activemq/activemq-client@5.17.2",
+        "pkg:oci/docker.io/library/eclipse-temurin@21-jre"
+      ]
+    },
+    {
+      "ref": "pkg:maven/io.netty/netty-codec-http2@4.1.99.Final",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.14.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.apache.activemq/activemq-client@5.17.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:oci/docker.io/library/eclipse-temurin@21-jre",
+      "dependsOn": [
+        "pkg:rpm/rhel/xz@5.4.3-1"
+      ]
+    },
+    {
+      "ref": "pkg:rpm/rhel/xz@5.4.3-1",
+      "dependsOn": []
+    }
+  ]
+}

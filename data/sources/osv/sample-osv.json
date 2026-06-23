@@ -376,6 +376,305 @@
     ]
   },
   {
+    "id": "GHSA-j8r2-6x86-q33q",
+    "aliases": [
+      "CVE-2023-32681"
+    ],
+    "summary": "Requests proxy credential leak sample",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "PyPI",
+          "name": "requests"
+        },
+        "ranges": [
+          {
+            "type": "ECOSYSTEM",
+            "events": [
+              {
+                "introduced": "2.3.0"
+              },
+              {
+                "fixed": "2.31.0"
+              }
+            ]
+          }
+        ],
+        "versions": [
+          "2.25.0",
+          "2.27.1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-34jh-p97f-mpxf",
+    "aliases": [
+      "CVE-2024-35195"
+    ],
+    "summary": "Requests certificate verification state sample",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "PyPI",
+          "name": "requests"
+        },
+        "ranges": [
+          {
+            "type": "ECOSYSTEM",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "2.32.0"
+              }
+            ]
+          }
+        ],
+        "versions": [
+          "2.25.0",
+          "2.27.1",
+          "2.31.0"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-urllib3-demo",
+    "aliases": [
+      "CVE-2026-44431"
+    ],
+    "summary": "urllib3 redirect header handling sample",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "PyPI",
+          "name": "urllib3"
+        },
+        "ranges": [
+          {
+            "type": "ECOSYSTEM",
+            "events": [
+              {
+                "introduced": "1.23"
+              },
+              {
+                "fixed": "2.7.0"
+              }
+            ]
+          }
+        ],
+        "versions": [
+          "2.6.3"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-cryptography-demo",
+    "aliases": [
+      "CVE-2026-39892"
+    ],
+    "summary": "cryptography buffer handling sample",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "PyPI",
+          "name": "cryptography"
+        },
+        "ranges": [
+          {
+            "type": "ECOSYSTEM",
+            "events": [
+              {
+                "introduced": "45.0.0"
+              },
+              {
+                "fixed": "46.0.7"
+              }
+            ]
+          }
+        ],
+        "versions": [
+          "46.0.5"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-numpy-demo",
+    "aliases": [
+      "CVE-2021-34141"
+    ],
+    "summary": "NumPy string comparison sample",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "PyPI",
+          "name": "numpy"
+        },
+        "ranges": [
+          {
+            "type": "ECOSYSTEM",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "1.22.0"
+              }
+            ]
+          }
+        ],
+        "versions": [
+          "1.20.0"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-express-rate-limit-demo",
+    "aliases": [
+      "CVE-2026-30827"
+    ],
+    "summary": "express-rate-limit IPv4-mapped IPv6 bypass sample",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "express-rate-limit"
+        },
+        "ranges": [
+          {
+            "type": "ECOSYSTEM",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "8.1.1"
+              }
+            ]
+          }
+        ],
+        "versions": [
+          "8.1.0"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-bootstrap-demo",
+    "aliases": [
+      "CVE-2025-1647"
+    ],
+    "summary": "Bootstrap popover and tooltip XSS sample",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "bootstrap"
+        },
+        "ranges": [
+          {
+            "type": "ECOSYSTEM",
+            "events": [
+              {
+                "introduced": "3.0.0"
+              },
+              {
+                "fixed": "5.3.3"
+              }
+            ]
+          }
+        ],
+        "versions": [
+          "3.4.1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-axios-demo",
+    "aliases": [
+      "CVE-2026-44489"
+    ],
+    "summary": "Axios proxy authorization handling sample",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "axios"
+        },
+        "ranges": [
+          {
+            "type": "ECOSYSTEM",
+            "events": [
+              {
+                "introduced": "1.0.0"
+              },
+              {
+                "fixed": "1.15.3"
+              }
+            ]
+          }
+        ],
+        "versions": [
+          "1.15.2"
+        ]
+      }
+    ]
+  },
+  {
     "id": "RHEL-2024-0001",
     "aliases": [
       "CVE-2024-3094"

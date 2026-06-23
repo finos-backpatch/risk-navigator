@@ -1,0 +1,106 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-06-23T00:00:00Z",
+    "tools": [
+      {
+        "vendor": "Risk Navigator",
+        "name": "curated-deep-sbom-demo",
+        "version": "0.1.0"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "bom-ref": "pkg:github/finos/traderX@main",
+      "name": "traderX",
+      "version": "main",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/finos/traderX.git"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.14.2",
+      "name": "jackson-databind",
+      "version": "2.14.2",
+      "purl": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.14.2",
+      "scope": "required",
+      "group": "com.fasterxml.jackson.core"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
+      "name": "log4j-core",
+      "version": "2.14.1",
+      "purl": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
+      "scope": "required",
+      "group": "org.apache.logging.log4j"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/express-rate-limit@8.1.0",
+      "name": "express-rate-limit",
+      "version": "8.1.0",
+      "purl": "pkg:npm/express-rate-limit@8.1.0",
+      "scope": "required"
+    },
+    {
+      "type": "container",
+      "bom-ref": "pkg:oci/docker.io/library/node@20-bookworm",
+      "name": "node",
+      "version": "20-bookworm",
+      "purl": "pkg:oci/docker.io/library/node@20-bookworm",
+      "scope": "required",
+      "group": "docker.io/library"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:rpm/rhel/xz@5.4.3-1",
+      "name": "xz",
+      "version": "5.4.3-1",
+      "purl": "pkg:rpm/rhel/xz@5.4.3-1",
+      "scope": "required",
+      "group": "rhel"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pkg:github/finos/traderX@main",
+      "dependsOn": [
+        "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.14.2",
+        "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
+        "pkg:npm/express-rate-limit@8.1.0",
+        "pkg:oci/docker.io/library/node@20-bookworm"
+      ]
+    },
+    {
+      "ref": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.14.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:npm/express-rate-limit@8.1.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:oci/docker.io/library/node@20-bookworm",
+      "dependsOn": [
+        "pkg:rpm/rhel/xz@5.4.3-1"
+      ]
+    },
+    {
+      "ref": "pkg:rpm/rhel/xz@5.4.3-1",
+      "dependsOn": []
+    }
+  ]
+}

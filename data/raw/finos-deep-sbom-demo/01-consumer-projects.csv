@@ -1,0 +1,9 @@
+id,namespace,meta,proj,release,project_ref,eonid,department,tai_system
+github|finos|FDC3,github,finos,FDC3,main,github/finos/FDC3,SBOM-1,SBOM Scan,FDC3
+github|finos|TimeBase-CE,github,finos,TimeBase-CE,main,github/finos/TimeBase-CE,SBOM-2,SBOM Scan,TimeBase-CE
+github|finos|architecture-as-code,github,finos,architecture-as-code,main,github/finos/architecture-as-code,SBOM-3,SBOM Scan,architecture-as-code
+github|finos|ipyregulartable,github,finos,ipyregulartable,main,github/finos/ipyregulartable,SBOM-4,SBOM Scan,ipyregulartable
+github|finos|open-resource-broker,github,finos,open-resource-broker,main,github/finos/open-resource-broker,SBOM-5,SBOM Scan,open-resource-broker
+github|finos|symphony-bdk-java,github,finos,symphony-bdk-java,main,github/finos/symphony-bdk-java,SBOM-6,SBOM Scan,symphony-bdk-java
+github|finos|traderX,github,finos,traderX,main,github/finos/traderX,SBOM-7,SBOM Scan,traderX
+github|finos|waltz,github,finos,waltz,main,github/finos/waltz,SBOM-8,SBOM Scan,waltz
