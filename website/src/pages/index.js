@@ -3,8 +3,6 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
-const publicToolUrl = "/tools/risk-navigator.html";
-
 const toolSections = [
   {
     image: "/img/tool/risk-navigator-dashboard.png",
@@ -42,6 +40,8 @@ function ToolSectionCard({ image, title, copy, alt }) {
 }
 
 export default function Home() {
+  const publicToolUrl = useBaseUrl("/tools/risk-navigator.html");
+
   return (
     <Layout
       title="OSERA Risk Navigator"

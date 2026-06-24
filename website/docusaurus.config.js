@@ -5,7 +5,8 @@ const isGitHubPages = process.env.GITHUB_PAGES === "true";
 const siteUrl = isGitHubPages
   ? "https://finos-backpatch.github.io"
   : process.env.DEPLOY_PRIME_URL || process.env.URL || "https://risk-navigator.finos.org";
-const publicToolUrl = "/tools/risk-navigator.html";
+const baseUrl = isGitHubPages ? "/risk-navigator/" : "/";
+const publicToolUrl = `${baseUrl}tools/risk-navigator.html`;
 const launchToolHtml = `<a class="navbar__item navbar__link" href="${publicToolUrl}">Launch Tool</a>`;
 const launchToolFooterHtml = `<a class="footer__link-item" href="${publicToolUrl}">Launch Tool</a>`;
 
@@ -15,7 +16,7 @@ const config = {
   tagline: "Dependency-risk prioritization for open source supply resiliency",
   favicon: "img/favicon.ico",
   url: siteUrl,
-  baseUrl: isGitHubPages ? "/risk-navigator/" : "/",
+  baseUrl,
   organizationName: "finos-backpatch",
   projectName: "risk-navigator",
   onBrokenLinks: "throw",
