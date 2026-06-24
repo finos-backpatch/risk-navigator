@@ -749,6 +749,63 @@ textarea { width: 100%; min-height: 180px; border: 1px solid var(--line); border
 @media (max-width: 720px) {
   .dashboard-kpis { grid-template-columns: 1fr; }
 }
+@media (max-width: 768px) {
+  html {
+    height: auto;
+    min-height: 100%;
+  }
+  body {
+    height: auto;
+    min-height: 100dvh;
+    overflow: auto;
+    display: block;
+  }
+  header {
+    position: static;
+  }
+  main,
+  main.dashboard-layout {
+    display: block;
+    min-height: auto;
+    overflow: visible;
+  }
+  .panel {
+    overflow: visible;
+    min-height: auto;
+  }
+  main > section.panel {
+    display: block;
+  }
+  #modeBar,
+  th,
+  #detail > h3,
+  .dashboard-filter-intro {
+    position: static;
+    top: auto;
+  }
+  .table-wrap,
+  main.dashboard-layout .table-wrap {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+  .dashboard-view {
+    min-height: auto;
+  }
+  #detail,
+  main.dashboard-layout #detail {
+    margin-top: 10px;
+    max-height: none;
+    overflow: visible;
+  }
+  #detail > h3 {
+    margin: 0 !important;
+    box-shadow: none;
+  }
+  .filter-shell.dashboard-filter {
+    border-top: 1px solid var(--line);
+  }
+}
 .dashboard-card,
 .dashboard-section {
   border: 1px solid var(--line);
