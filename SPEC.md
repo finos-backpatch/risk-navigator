@@ -603,6 +603,15 @@ the opportunity landscape while keeping the main canvas focused on the
 dashboard. In table modes, the same filters return below the mode tabs and the
 right-hand panel returns to row details.
 
+On phone-width/mobile viewports, Dashboard mode must become a single
+document-flow layout: the full dashboard content appears first, then the full
+filter pane appears below it. The page itself must scroll normally; do not trap
+the dashboard in a fixed-height panel or sticky main/table area that leaves only
+a small sliver visible. Sticky mode tabs, sticky table headers, and sticky
+detail headings should be disabled or scoped so they do not consume the mobile
+viewport. Users must be able to scroll from the top of the dashboard through
+the bottom of the filters in one continuous page.
+
 ### 6.2 Libraries
 
 Columns: # · Library coord · Version · CVSS · CVEs · KEV (🔥 badge) · EPSS ·
@@ -972,6 +981,8 @@ class selection, project-ref chip count, and filtered library/project counts).
 When the collapsed summary has too many pills, content must wrap onto additional
 lines (auto-height) rather than introducing a horizontal scrollbar.
 The collapsed/expanded control is icon-based (`+` / `-`) and stateful.
+On mobile viewports, filters may move below Dashboard content, but all filter
+controls must remain available and reachable by normal page scroll.
 
 CVSS threshold semantics:
 
