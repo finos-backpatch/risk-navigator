@@ -7,10 +7,10 @@ const publicToolUrl = "/tools/risk-navigator.html";
 
 const toolSections = [
   {
-    image: "/img/tool/risk-navigator-prioritization.png",
-    title: "Prioritize vulnerable libraries",
-    copy: "Start from the ranked library view to compare CVSS, EPSS, KEV, affected projects, upgrade effort, safe versions, and amplifier paths in one place.",
-    alt: "Risk Navigator library prioritization table with detail pane",
+    image: "/img/tool/risk-navigator-dashboard.png",
+    title: "Assess the estate landscape",
+    copy: "Start from the dashboard to compare projects, distinct CVEs, namespace spread, CVSS distribution, direct/transitive exposure, and policy thresholds in one place.",
+    alt: "Risk Navigator dashboard showing the FINOS Deep SBOM Demo opportunity landscape",
   },
   {
     image: "/img/tool/risk-navigator-backpatch.png",
